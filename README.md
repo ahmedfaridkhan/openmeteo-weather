@@ -34,7 +34,7 @@ The weather data ingested and processed by the pipeline is subsequently visualiz
 4.	Min Max Temperatures: Shows the expected minimum and maximum temperatures for the next 7 days.
 5.	Wind Speed by Time of Day: Highlights wind speed variations throughout the day.
 The Tableau dashboard is automatically updated daily, in sync with the ETL pipeline. The data is pulled into Tableau directly from the PostgreSQL database.
-You can view the interactive Tableau dashboard here.
+You can view the interactive Tableau dashboard here (https://public.tableau.com/views/weather_forecasts_openmeteo/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link).
 ### 5. Conclusion
 This project successfully demonstrates the implementation of a weather data pipeline using Apache Airflow, Docker, and PostgreSQL. The integration of Docker ensures that the entire pipeline is portable and consistent across environments. The processed data is visualized using Tableau, providing insightful visualizations that can be used for further analysis. The project is designed to be scalable, with each component playing a crucial role in ensuring the reliability and accuracy of the weather data.
 ### 6. Future Works
