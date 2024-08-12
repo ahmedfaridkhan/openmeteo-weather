@@ -1,0 +1,102 @@
+[2024-08-11T20:46:52.853+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-08-11T20:46:52.869+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather_data_migration.weather_data_migration manual__2024-08-11T20:45:49.838132+00:00 [queued]>
+[2024-08-11T20:46:52.872+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather_data_migration.weather_data_migration manual__2024-08-11T20:45:49.838132+00:00 [queued]>
+[2024-08-11T20:46:52.875+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-08-11T20:46:52.882+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): weather_data_migration> on 2024-08-11 20:45:49.838132+00:00
+[2024-08-11T20:46:52.888+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62: DeprecationWarning: This process (pid=855) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-08-11T20:46:52.890+0000] {standard_task_runner.py:64} INFO - Started process 857 to run task
+[2024-08-11T20:46:52.889+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'weather_data_migration', 'weather_data_migration', 'manual__2024-08-11T20:45:49.838132+00:00', '--job-id', '92', '--raw', '--subdir', 'DAGS_FOLDER/weather_data_migration_dag.py', '--cfg-path', '/tmp/tmpd9l2p7vt']
+[2024-08-11T20:46:52.893+0000] {standard_task_runner.py:91} INFO - Job 92: Subtask weather_data_migration
+[2024-08-11T20:46:52.929+0000] {task_command.py:426} INFO - Running <TaskInstance: weather_data_migration.weather_data_migration manual__2024-08-11T20:45:49.838132+00:00 [running]> on host 032430a33e2d
+[2024-08-11T20:46:52.974+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='weather_data_migration' AIRFLOW_CTX_TASK_ID='weather_data_migration' AIRFLOW_CTX_EXECUTION_DATE='2024-08-11T20:45:49.838132+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-08-11T20:45:49.838132+00:00'
+[2024-08-11T20:46:52.975+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-08-11T20:46:52.975+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-08-11T20:46:52.976+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /opt/***/dags/weather_data_migration.py --connection postgresql+psycopg2://***:***@postgres/***']
+[2024-08-11T20:46:52.981+0000] {subprocess.py:86} INFO - Output:
+[2024-08-11T20:46:53.369+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2024-08-11T20:46:53.370+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+[2024-08-11T20:46:53.370+0000] {subprocess.py:93} INFO -     self.dialect.do_execute(
+[2024-08-11T20:46:53.371+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+[2024-08-11T20:46:53.373+0000] {subprocess.py:93} INFO -     cursor.execute(statement, parameters)
+[2024-08-11T20:46:53.374+0000] {subprocess.py:93} INFO - psycopg2.errors.SyntaxError: syntax error at or near "("
+[2024-08-11T20:46:53.374+0000] {subprocess.py:93} INFO - LINE 1: ALTER TABLE openmeteo (
+[2024-08-11T20:46:53.374+0000] {subprocess.py:93} INFO -                               ^
+[2024-08-11T20:46:53.375+0000] {subprocess.py:93} INFO - 
+[2024-08-11T20:46:53.375+0000] {subprocess.py:93} INFO - 
+[2024-08-11T20:46:53.375+0000] {subprocess.py:93} INFO - The above exception was the direct cause of the following exception:
+[2024-08-11T20:46:53.375+0000] {subprocess.py:93} INFO - 
+[2024-08-11T20:46:53.378+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2024-08-11T20:46:53.378+0000] {subprocess.py:93} INFO -   File "/opt/***/dags/weather_data_migration.py", line 40, in <module>
+[2024-08-11T20:46:53.378+0000] {subprocess.py:93} INFO -     main(args.connection)
+[2024-08-11T20:46:53.379+0000] {subprocess.py:93} INFO -   File "/opt/***/dags/weather_data_migration.py", line 13, in main
+[2024-08-11T20:46:53.379+0000] {subprocess.py:93} INFO -     session.execute('''ALTER TABLE openmeteo (
+[2024-08-11T20:46:53.379+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1717, in execute
+[2024-08-11T20:46:53.379+0000] {subprocess.py:93} INFO -     result = conn._execute_20(statement, params or {}, execution_options)
+[2024-08-11T20:46:53.379+0000] {subprocess.py:93} INFO -              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-08-11T20:46:53.379+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+[2024-08-11T20:46:53.379+0000] {subprocess.py:93} INFO -     return meth(self, args_10style, kwargs_10style, execution_options)
+[2024-08-11T20:46:53.379+0000] {subprocess.py:93} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-08-11T20:46:53.380+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+[2024-08-11T20:46:53.380+0000] {subprocess.py:93} INFO -     return connection._execute_clauseelement(
+[2024-08-11T20:46:53.380+0000] {subprocess.py:93} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-08-11T20:46:53.380+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+[2024-08-11T20:46:53.380+0000] {subprocess.py:93} INFO -     ret = self._execute_context(
+[2024-08-11T20:46:53.380+0000] {subprocess.py:93} INFO -           ^^^^^^^^^^^^^^^^^^^^^^
+[2024-08-11T20:46:53.380+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+[2024-08-11T20:46:53.380+0000] {subprocess.py:93} INFO -     self._handle_dbapi_exception(
+[2024-08-11T20:46:53.380+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+[2024-08-11T20:46:53.380+0000] {subprocess.py:93} INFO -     util.raise_(
+[2024-08-11T20:46:53.381+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+[2024-08-11T20:46:53.381+0000] {subprocess.py:93} INFO -     raise exception
+[2024-08-11T20:46:53.381+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+[2024-08-11T20:46:53.381+0000] {subprocess.py:93} INFO -     self.dialect.do_execute(
+[2024-08-11T20:46:53.381+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+[2024-08-11T20:46:53.381+0000] {subprocess.py:93} INFO -     cursor.execute(statement, parameters)
+[2024-08-11T20:46:53.381+0000] {subprocess.py:93} INFO - sqlalchemy.exc.ProgrammingError: (psycopg2.errors.SyntaxError) syntax error at or near "("
+[2024-08-11T20:46:53.381+0000] {subprocess.py:93} INFO - LINE 1: ALTER TABLE openmeteo (
+[2024-08-11T20:46:53.381+0000] {subprocess.py:93} INFO -                               ^
+[2024-08-11T20:46:53.381+0000] {subprocess.py:93} INFO - 
+[2024-08-11T20:46:53.382+0000] {subprocess.py:93} INFO - [SQL: ALTER TABLE openmeteo (
+[2024-08-11T20:46:53.382+0000] {subprocess.py:93} INFO -     key VARCHAR PRIMARY KEY,
+[2024-08-11T20:46:53.382+0000] {subprocess.py:93} INFO -     date TIMESTAMP,
+[2024-08-11T20:46:53.382+0000] {subprocess.py:93} INFO -     temperature_2m DECIMAL,
+[2024-08-11T20:46:53.382+0000] {subprocess.py:93} INFO -     relative_humidity_2m INT,
+[2024-08-11T20:46:53.382+0000] {subprocess.py:93} INFO -     dew_point_2m DECIMAL,
+[2024-08-11T20:46:53.382+0000] {subprocess.py:93} INFO -     apparent_temperature DECIMAL,
+[2024-08-11T20:46:53.382+0000] {subprocess.py:93} INFO -     precipitation_probability DECIMAL,
+[2024-08-11T20:46:53.382+0000] {subprocess.py:93} INFO -     precipitation DECIMAL,
+[2024-08-11T20:46:53.382+0000] {subprocess.py:93} INFO -     rain DECIMAL,
+[2024-08-11T20:46:53.383+0000] {subprocess.py:93} INFO -     showers DECIMAL,
+[2024-08-11T20:46:53.383+0000] {subprocess.py:93} INFO -     snowfall DECIMAL,
+[2024-08-11T20:46:53.383+0000] {subprocess.py:93} INFO -     cloud_cover INT,
+[2024-08-11T20:46:53.383+0000] {subprocess.py:93} INFO -     visibility INT,
+[2024-08-11T20:46:53.383+0000] {subprocess.py:93} INFO -     wind_speed_10m DECIMAL,
+[2024-08-11T20:46:53.383+0000] {subprocess.py:93} INFO -     wind_direction_10m DECIMAL,
+[2024-08-11T20:46:53.383+0000] {subprocess.py:93} INFO -     uv_index DECIMAL,
+[2024-08-11T20:46:53.383+0000] {subprocess.py:93} INFO -     uv_index_clear_sky DECIMAL,
+[2024-08-11T20:46:53.383+0000] {subprocess.py:93} INFO -     is_day INT,
+[2024-08-11T20:46:53.383+0000] {subprocess.py:93} INFO -     location VARCHAR )]
+[2024-08-11T20:46:53.384+0000] {subprocess.py:93} INFO - (Background on this error at: https://sqlalche.me/e/14/f405)
+[2024-08-11T20:46:53.396+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2024-08-11T20:46:53.396+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-08-11T20:46:53.402+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 243, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2024-08-11T20:46:53.406+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=weather_data_migration, task_id=weather_data_migration, run_id=manual__2024-08-11T20:45:49.838132+00:00, execution_date=20240811T204549, start_date=20240811T204652, end_date=20240811T204653
+[2024-08-11T20:46:53.417+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 92 for task weather_data_migration (Bash command failed. The command returned a non-zero exit code 1.; 857)
+[2024-08-11T20:46:53.444+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2024-08-11T20:46:53.456+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-08-11T20:46:53.457+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,102 @@
+[2024-08-11T20:33:16.660+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-08-11T20:33:16.687+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather.export_data_to_db manual__2024-08-11T20:32:38.986178+00:00 [queued]>
+[2024-08-11T20:33:16.692+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather.export_data_to_db manual__2024-08-11T20:32:38.986178+00:00 [queued]>
+[2024-08-11T20:33:16.693+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-08-11T20:33:16.704+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): export_data_to_db> on 2024-08-11 20:32:38.986178+00:00
+[2024-08-11T20:33:16.725+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62: DeprecationWarning: This process (pid=600) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-08-11T20:33:16.727+0000] {standard_task_runner.py:64} INFO - Started process 602 to run task
+[2024-08-11T20:33:16.729+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'weather', 'export_data_to_db', 'manual__2024-08-11T20:32:38.986178+00:00', '--job-id', '78', '--raw', '--subdir', 'DAGS_FOLDER/weather_dag.py', '--cfg-path', '/tmp/tmpaogk7682']
+[2024-08-11T20:33:16.732+0000] {standard_task_runner.py:91} INFO - Job 78: Subtask export_data_to_db
+[2024-08-11T20:33:16.772+0000] {task_command.py:426} INFO - Running <TaskInstance: weather.export_data_to_db manual__2024-08-11T20:32:38.986178+00:00 [running]> on host 032430a33e2d
+[2024-08-11T20:33:16.839+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='weather' AIRFLOW_CTX_TASK_ID='export_data_to_db' AIRFLOW_CTX_EXECUTION_DATE='2024-08-11T20:32:38.986178+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-08-11T20:32:38.986178+00:00'
+[2024-08-11T20:33:16.841+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-08-11T20:33:16.843+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-08-11T20:33:16.846+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /opt/***/dags/weather_to_db.py --date 2024-08-11 --connection postgresql+psycopg2://***:***@postgres/***']
+[2024-08-11T20:33:16.863+0000] {subprocess.py:86} INFO - Output:
+[2024-08-11T20:33:17.611+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2024-08-11T20:33:17.615+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1890, in _execute_context
+[2024-08-11T20:33:17.624+0000] {subprocess.py:93} INFO -     self.dialect.do_executemany(
+[2024-08-11T20:33:17.625+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 982, in do_executemany
+[2024-08-11T20:33:17.628+0000] {subprocess.py:93} INFO -     context._psycopg2_fetched_rows = xtras.execute_values(
+[2024-08-11T20:33:17.631+0000] {subprocess.py:93} INFO -                                      ^^^^^^^^^^^^^^^^^^^^^
+[2024-08-11T20:33:17.635+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/psycopg2/extras.py", line 1299, in execute_values
+[2024-08-11T20:33:17.636+0000] {subprocess.py:93} INFO -     cur.execute(b''.join(parts))
+[2024-08-11T20:33:17.637+0000] {subprocess.py:93} INFO - psycopg2.errors.UndefinedTable: relation "weather" does not exist
+[2024-08-11T20:33:17.646+0000] {subprocess.py:93} INFO - LINE 1: INSERT INTO weather (key, date, temperature_2m, relative_hum...
+[2024-08-11T20:33:17.654+0000] {subprocess.py:93} INFO -                     ^
+[2024-08-11T20:33:17.655+0000] {subprocess.py:93} INFO - 
+[2024-08-11T20:33:17.656+0000] {subprocess.py:93} INFO - 
+[2024-08-11T20:33:17.661+0000] {subprocess.py:93} INFO - The above exception was the direct cause of the following exception:
+[2024-08-11T20:33:17.664+0000] {subprocess.py:93} INFO - 
+[2024-08-11T20:33:17.665+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2024-08-11T20:33:17.666+0000] {subprocess.py:93} INFO -   File "/opt/***/dags/weather_to_db.py", line 59, in <module>
+[2024-08-11T20:33:17.667+0000] {subprocess.py:93} INFO -     main(args.date, args.connection)
+[2024-08-11T20:33:17.667+0000] {subprocess.py:93} INFO -   File "/opt/***/dags/weather_to_db.py", line 50, in main
+[2024-08-11T20:33:17.668+0000] {subprocess.py:93} INFO -     session.bulk_save_objects(data_insert)
+[2024-08-11T20:33:17.668+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3705, in bulk_save_objects
+[2024-08-11T20:33:17.672+0000] {subprocess.py:93} INFO -     self._bulk_save_mappings(
+[2024-08-11T20:33:17.672+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3912, in _bulk_save_mappings
+[2024-08-11T20:33:17.674+0000] {subprocess.py:93} INFO -     with util.safe_reraise():
+[2024-08-11T20:33:17.678+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+[2024-08-11T20:33:17.682+0000] {subprocess.py:93} INFO -     compat.raise_(
+[2024-08-11T20:33:17.684+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+[2024-08-11T20:33:17.686+0000] {subprocess.py:93} INFO -     raise exception
+[2024-08-11T20:33:17.686+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3901, in _bulk_save_mappings
+[2024-08-11T20:33:17.687+0000] {subprocess.py:93} INFO -     persistence._bulk_insert(
+[2024-08-11T20:33:17.688+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 107, in _bulk_insert
+[2024-08-11T20:33:17.690+0000] {subprocess.py:93} INFO -     _emit_insert_statements(
+[2024-08-11T20:33:17.693+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 1097, in _emit_insert_statements
+[2024-08-11T20:33:17.694+0000] {subprocess.py:93} INFO -     c = connection._execute_20(
+[2024-08-11T20:33:17.694+0000] {subprocess.py:93} INFO -         ^^^^^^^^^^^^^^^^^^^^^^^
+[2024-08-11T20:33:17.694+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+[2024-08-11T20:33:17.695+0000] {subprocess.py:93} INFO -     return meth(self, args_10style, kwargs_10style, execution_options)
+[2024-08-11T20:33:17.695+0000] {subprocess.py:93} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-08-11T20:33:17.695+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+[2024-08-11T20:33:17.695+0000] {subprocess.py:93} INFO -     return connection._execute_clauseelement(
+[2024-08-11T20:33:17.696+0000] {subprocess.py:93} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-08-11T20:33:17.696+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+[2024-08-11T20:33:17.697+0000] {subprocess.py:93} INFO -     ret = self._execute_context(
+[2024-08-11T20:33:17.697+0000] {subprocess.py:93} INFO -           ^^^^^^^^^^^^^^^^^^^^^^
+[2024-08-11T20:33:17.697+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+[2024-08-11T20:33:17.698+0000] {subprocess.py:93} INFO -     self._handle_dbapi_exception(
+[2024-08-11T20:33:17.698+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+[2024-08-11T20:33:17.699+0000] {subprocess.py:93} INFO -     util.raise_(
+[2024-08-11T20:33:17.699+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+[2024-08-11T20:33:17.702+0000] {subprocess.py:93} INFO -     raise exception
+[2024-08-11T20:33:17.703+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1890, in _execute_context
+[2024-08-11T20:33:17.703+0000] {subprocess.py:93} INFO -     self.dialect.do_executemany(
+[2024-08-11T20:33:17.703+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 982, in do_executemany
+[2024-08-11T20:33:17.703+0000] {subprocess.py:93} INFO -     context._psycopg2_fetched_rows = xtras.execute_values(
+[2024-08-11T20:33:17.704+0000] {subprocess.py:93} INFO -                                      ^^^^^^^^^^^^^^^^^^^^^
+[2024-08-11T20:33:17.704+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.12/site-packages/psycopg2/extras.py", line 1299, in execute_values
+[2024-08-11T20:33:17.704+0000] {subprocess.py:93} INFO -     cur.execute(b''.join(parts))
+[2024-08-11T20:33:17.704+0000] {subprocess.py:93} INFO - sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "weather" does not exist
+[2024-08-11T20:33:17.704+0000] {subprocess.py:93} INFO - LINE 1: INSERT INTO weather (key, date, temperature_2m, relative_hum...
+[2024-08-11T20:33:17.704+0000] {subprocess.py:93} INFO -                     ^
+[2024-08-11T20:33:17.705+0000] {subprocess.py:93} INFO - 
+[2024-08-11T20:33:17.705+0000] {subprocess.py:93} INFO - [SQL: INSERT INTO weather (key, date, temperature_2m, relative_humidity_2m, dew_point_2m, apparent_temperature, precipitation_probability, precipitation, rain, showers, snowfall, cloud_cover, visibility, wind_speed_10m, wind_direction_10m, uv_index, uv_index_clear_sky, is_day, location) VALUES (%(key)s, %(date)s, %(temperature_2m)s, %(relative_humidity_2m)s, %(dew_point_2m)s, %(apparent_temperature)s, %(precipitation_probability)s, %(precipitation)s, %(rain)s, %(showers)s, %(snowfall)s, %(cloud_cover)s, %(visibility)s, %(wind_speed_10m)s, %(wind_direction_10m)s, %(uv_index)s, %(uv_index_clear_sky)s, %(is_day)s, %(location)s)]
+[2024-08-11T20:33:17.705+0000] {subprocess.py:93} INFO - [parameters: ({'key': 'New York 2024-08-11 00:00:00+00:00', 'date': '2024-08-11 00:00:00+00:00', 'temperature_2m': '30.063501', 'relative_humidity_2m': '31.0', 'dew_point_2m': '11.087822', 'apparent_temperature': '28.353329', 'precipitation_probability': '0.0', 'precipitation': '0.0', 'rain': '0.0', 'showers': '0.0', 'snowfall': '0.0', 'cloud_cover': '80.0', 'visibility': '58000.0', 'wind_speed_10m': '13.979871', 'wind_direction_10m': '281.88864', 'uv_index': '0.2', 'uv_index_clear_sky': '0.2', 'is_day': '0.0', 'location': 'New York'}, {'key': 'Houston 2024-08-11 00:00:00+00:00', 'date': '2024-08-11 00:00:00+00:00', 'temperature_2m': '31.4805', 'relative_humidity_2m': '61.0', 'dew_point_2m': '23.051304', 'apparent_temperature': '35.39441', 'precipitation_probability': '0.0', 'precipitation': '0.0', 'rain': '0.0', 'showers': '0.0', 'snowfall': '0.0', 'cloud_cover': '0.0', 'visibility': '30500.0', 'wind_speed_10m': '10.990322', 'wind_direction_10m': '31.607454', 'uv_index': '1.6', 'uv_index_clear_sky': '1.6', 'is_day': '1.0', 'location': 'Houston'}, {'key': 'Philadelphia 2024-08-11 00:00:00+00:00', 'date': '2024-08-11 00:00:00+00:00', 'temperature_2m': '26.348', 'relative_humidity_2m': '50.0', 'dew_point_2m': '15.095609', 'apparent_temperature': '26.239498', 'precipitation_probability': '0.0', 'precipitation': '0.0', 'rain': '0.0', 'showers': '0.0', 'snowfall': '0.0', 'cloud_cover': '11.0', 'visibility': '39600.0', 'wind_speed_10m': '12.413476', 'wind_direction_10m': '286.8585', 'uv_index': '0.2', 'uv_index_clear_sky': '0.25', 'is_day': '1.0', 'location': 'Philadelphia'}, {'key': 'San Antonio 2024-08-11 00:00:00+00:00', 'date': '2024-08-11 00:00:00+00:00', 'temperature_2m': '35.776', 'relative_humidity_2m': '43.0', 'dew_point_2m': '21.257212', 'apparent_temperature': '38.26192', 'precipitation_probability': '77.0', 'precipitation': '0.0', 'rain': '0.0', 'showers': '0.0', 'snowfall': '0.0', 'cloud_cover': '49.0', 'visibility': '45100.0', 'wind_speed_10m': '13.797912', 'wind_direction_10m': '97.495766', 'uv_index': '1.05', 'uv_index_clear_sky': '1.95', 'is_day': '1.0', 'location': 'San Antonio'}, {'key': 'Chicago 2024-08-11 00:00:00+00:00', 'date': '2024-08-11 00:00:00+00:00', 'temperature_2m': '21.73', 'relative_humidity_2m': '44.0', 'dew_point_2m': '8.943073', 'apparent_temperature': '18.983902', 'precipitation_probability': '0.0', 'precipitation': '0.0', 'rain': '0.0', 'showers': '0.0', 'snowfall': '0.0', 'cloud_cover': '0.0', 'visibility': '43200.0', 'wind_speed_10m': '16.919998', 'wind_direction_10m': '270.0', 'uv_index': '0.95', 'uv_index_clear_sky': '0.95', 'is_day': '1.0', 'location': 'Chicago'}, {'key': 'San Diego 2024-08-11 00:00:00+00:00', 'date': '2024-08-11 00:00:00+00:00', 'temperature_2m': '24.067001', 'relative_humidity_2m': '78.0', 'dew_point_2m': '19.991837', 'apparent_temperature': '26.402954', 'precipitation_probability': '97.0', 'precipitation': '0.0', 'rain': '0.0', 'showers': '0.0', 'snowfall': '0.0', 'cloud_cover': '19.0', 'visibility': '17700.0', 'wind_speed_10m': '10.44', 'wind_direction_10m': '226.39711', 'uv_index': '4.0', 'uv_index_clear_sky': '4.25', 'is_day': '1.0', 'location': 'San Diego'}, {'key': 'Dallas 2024-08-11 00:00:00+00:00', 'date': '2024-08-11 00:00:00+00:00', 'temperature_2m': '34.0975', 'relative_humidity_2m': '44.0', 'dew_point_2m': '20.119648', 'apparent_temperature': '36.218468', 'precipitation_probability': '3.0', 'precipitation': '0.0', 'rain': '0.0', 'showers': '0.0', 'snowfall': '0.0', 'cloud_cover': '53.0', 'visibility': '41500.0', 'wind_speed_10m': '12.261157', 'wind_direction_10m': '130.23628', 'uv_index': '0.55', 'uv_index_clear_sky': '1.7', 'is_day': '1.0', 'location': 'Dallas'}, {'key': 'Los Angeles 2024-08-11 00:00:00+00:00', 'date': '2024-08-11 00:00:00+00:00', 'temperature_2m': '29.536499', 'relative_humidity_2m': '47.0', 'dew_point_2m': '17.0411', 'apparent_temperature': '30.158176', 'precipitation_probability': '0.0', 'precipitation': '0.0', 'rain': '0.0', 'showers': '0.0', 'snowfall': '0.0', 'cloud_cover': '0.0', 'visibility': '39400.0', 'wind_speed_10m': '14.003029', 'wind_direction_10m': '252.03076', 'uv_index': '4.4', 'uv_index_clear_sky': '4.4', 'is_day': '1.0', 'location': 'Los Angeles'}  ... displaying 10 of 240 total bound parameter sets ...  {'key': 'Philadelphia 2024-08-11 23:00:00+00:00', 'date': '2024-08-11 23:00:00+00:00', 'temperature_2m': '25.748', 'relative_humidity_2m': '41.0', 'dew_point_2m': '11.5070095', 'apparent_temperature': '24.475395', 'precipitation_probability': '0.0', 'precipitation': '0.0', 'rain': '0.0', 'showers': '0.0', 'snowfall': '0.0', 'cloud_cover': '12.0', 'visibility': '48700.0', 'wind_speed_10m': '11.885453', 'wind_direction_10m': '268.26434', 'uv_index': '1.05', 'uv_index_clear_sky': '1.1', 'is_day': '1.0', 'location': 'Philadelphia'}, {'key': 'San Antonio 2024-08-11 23:00:00+00:00', 'date': '2024-08-11 23:00:00+00:00', 'temperature_2m': '37.126', 'relative_humidity_2m': '36.0', 'dew_point_2m': '19.5777', 'apparent_temperature': '37.964615', 'precipitation_probability': '0.0', 'precipitation': '0.0', 'rain': '0.0', 'showers': '0.0', 'snowfall': '0.0', 'cloud_cover': '30.0', 'visibility': '53100.0', 'wind_speed_10m': '19.171478', 'wind_direction_10m': '124.286934', 'uv_index': '3.85', 'uv_index_clear_sky': '3.85', 'is_day': '1.0', 'location': 'San Antonio'})]
+[2024-08-11T20:33:17.705+0000] {subprocess.py:93} INFO - (Background on this error at: https://sqlalche.me/e/14/f405)
+[2024-08-11T20:33:17.721+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2024-08-11T20:33:17.723+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-08-11T20:33:17.763+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 243, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2024-08-11T20:33:17.798+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=weather, task_id=export_data_to_db, run_id=manual__2024-08-11T20:32:38.986178+00:00, execution_date=20240811T203238, start_date=20240811T203316, end_date=20240811T203317
+[2024-08-11T20:33:17.817+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 78 for task export_data_to_db (Bash command failed. The command returned a non-zero exit code 1.; 602)
+[2024-08-11T20:33:17.867+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2024-08-11T20:33:17.893+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-08-11T20:33:17.895+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
