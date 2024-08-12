@@ -1,7 +1,7 @@
 # openmeteo-weather
 
 ## Project Report: Weather Data Pipeline using Apache Airflow and Docker
-https://github.com/ahmedfaridkhan/openmeteo-weather
+
 ### 1. Introduction
 The project is designed to implement a robust ETL (Extract, Transform, Load) pipeline for weather data ingestion, processing, and storage using Apache Airflow. The pipeline operates within a Docker container, ensuring portability and consistency across different environments. The ETL process is designed to be automated and runs on a daily schedule, ensuring that weather data is up-to-date and readily available for analysis. The final step in the process is the visualization of this data using Tableau, where the data is presented in an interactive dashboard.
 ### 2. Project Structure and Components
